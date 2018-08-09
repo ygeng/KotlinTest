@@ -12,5 +12,5 @@ interface HospitalService {
 
     @FormUrlEncoded
     @POST(NetConfig.HOSIPITAL_LIST)
-    fun hospitalList(@Field("showapi_appid") appId: String = NetConfig.APP_ID, @Field("showapi_sign") appSign: String = NetConfig.APP_SIGN, @Field("cityName") cityName: String): Observable<BaseResponse<HospitalBean>>
+    fun hospitalList(@Field("cityName") cityName: String): Observable<BaseResponse<HospitalBean>> // @Field("showapi_appid") appId: String = NetConfig.APP_ID, @Field("showapi_sign") appSign: String = NetConfig.APP_SIGN,
 }

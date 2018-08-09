@@ -9,4 +9,7 @@ object NetConfig {
     val APP_ID = "71410"
 
     val APP_SIGN = "89133959dc8248ee8186bf21fa7c3a68"
+
+    val DEFAULT_TIMEOUT = 1000L
+
 }

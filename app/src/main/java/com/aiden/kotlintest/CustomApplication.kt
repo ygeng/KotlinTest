@@ -1,6 +1,7 @@
 package com.aiden.kotlintest
 
 import android.app.Application
+import android.content.Context
 
 class CustomApplication : Application() {
 
@@ -14,4 +15,5 @@ class CustomApplication : Application() {
         lateinit var instance: CustomApplication
             private set
     }
+
 }

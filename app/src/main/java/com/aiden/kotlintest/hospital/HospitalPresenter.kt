@@ -2,6 +2,7 @@ package com.aiden.kotlintest.hospital
 
 import android.util.Log
 import com.aiden.kotlintest.base.BaseResponse
+import com.aiden.kotlintest.net.DefaultObserver
 import com.aiden.kotlintest.net.NetWork
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,23 +22,13 @@ class HospitalPresenter(view: HospitalContract.View): HospitalContract.Presenter
                 .hospitalList(cityName = cityName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object: Observer<BaseResponse<HospitalBean>> {
-                    override fun onComplete() {
-                        Log.e("HospitalPresenter", "onComplete")
+                .subscribe(object: DefaultObserver<BaseResponse<HospitalBean>>() {
 
+                    override fun onSuccess(response: BaseResponse<HospitalBean>) {
+                        hospitalView.refreshUI(response.showapi_res_body.hospitalList)
                     }
 
-                    override fun onSubscribe(d: Disposable) {
-                        Log.e("HospitalPresenter", "onSubscribe")
-                    }
-
-                    override fun onNext(t: BaseResponse<HospitalBean>) {
-                        Log.e("HospitalPresenter", t.toString())
-                        hospitalView.refreshUI(t.showapi_res_body.hospitalList)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        Log.e("HospitalPresenter", "onError")
+                    override fun onFailure(message: String?) {
                         hospitalView.loadFailed()
                     }
 

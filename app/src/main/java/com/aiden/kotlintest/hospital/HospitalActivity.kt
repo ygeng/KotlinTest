@@ -32,10 +32,10 @@ class HospitalActivity : BaseActivity(), HospitalContract.View {
             view.iv_hospital.display(hospitalBean.img)
         }
         rv_hospital.adapter = mAdapter
-        mPresenter.getData("深圳")
+        mPresenter.getHospitalList("深圳")
 
         srl_hospital.setOnRefreshListener {
-            mPresenter.getData("深圳");
+            mPresenter.getHospitalList("深圳");
         }
     }
 
