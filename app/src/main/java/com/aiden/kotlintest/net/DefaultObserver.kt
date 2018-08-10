@@ -44,13 +44,13 @@ abstract class DefaultObserver<T> : Observer<T> {
         onFinish()
     }
 
-    public abstract fun onSuccess(response: T)
+    abstract fun onSuccess(response: T)
 
-    public abstract fun onFailure(message: String?)
+    abstract fun onFailure(message: String?)
 
-    public fun onFinish() {}
+    open fun onFinish() {}
 
-    public fun onException(reason: ExceptionReason) {
+    fun onException(reason: ExceptionReason) {
         when (reason) {
             ExceptionReason.PARSE_ERROR -> CustomApplication.instance.toast("解析数据失败")
             ExceptionReason.BAD_NETWORK -> CustomApplication.instance.toast("网络不给力")
@@ -58,6 +58,7 @@ abstract class DefaultObserver<T> : Observer<T> {
             ExceptionReason.CONNECT_TIMEOUT -> CustomApplication.instance.toast("连接超时")
             ExceptionReason.UNKNOWN_ERROR -> CustomApplication.instance.toast("未知错误")
         }
+        onFinish()
     }
 
     enum class ExceptionReason {

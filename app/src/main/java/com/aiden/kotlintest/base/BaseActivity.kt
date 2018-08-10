@@ -2,9 +2,9 @@ package com.aiden.kotlintest.base
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity: RxAppCompatActivity() {
 
     protected lateinit var mContext: Activity
 

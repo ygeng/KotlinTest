@@ -22,10 +22,9 @@ class HospitalActivity : BaseActivity(), HospitalContract.View {
     }
 
     override fun initData() {
-        mPresenter = HospitalPresenter(this)
+        mPresenter = HospitalPresenter(this, this, this)
         rv_hospital.layoutManager = LinearLayoutManager(this)
-        mAdapter = BaseRecyclerViewAdapter(this, mHospitalList, R.layout.layout_hospital_item) {
-            view: View, hospitalBean: HospitalBean ->
+        mAdapter = BaseRecyclerViewAdapter(this, mHospitalList, R.layout.layout_hospital_item) { view: View, hospitalBean: HospitalBean ->
             view.tv_name.text = hospitalBean.hosName
             view.tv_address.text = hospitalBean.addr
             view.tv_desc.text = hospitalBean.info
@@ -44,14 +43,15 @@ class HospitalActivity : BaseActivity(), HospitalContract.View {
             mHospitalList.clear()
             mHospitalList.addAll(hospitalList)
             mAdapter.notifyDataSetChanged()
-            if (srl_hospital.isRefreshing) {
-                srl_hospital.isRefreshing = false
-            }
+
         }
     }
 
     override fun loadFailed() {
         toast("加载失败，请稍后再试")
+    }
+
+    override fun onFinish() {
         if (srl_hospital.isRefreshing) {
             srl_hospital.isRefreshing = false
         }

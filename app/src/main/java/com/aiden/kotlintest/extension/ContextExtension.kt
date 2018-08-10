@@ -53,3 +53,5 @@ fun Context.toast(@StringRes stringResId: Int, duration: Int = Toast.LENGTH_SHOR
     toast(string(stringResId), duration)
 }
 
+fun Context.density() = resources.displayMetrics.density
+
