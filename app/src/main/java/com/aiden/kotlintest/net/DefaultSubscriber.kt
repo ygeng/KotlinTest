@@ -5,20 +5,20 @@ import android.util.Log
 import com.aiden.kotlintest.CustomApplication
 import com.aiden.kotlintest.extension.toast
 import com.google.gson.JsonParseException
-import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
+import org.reactivestreams.Subscriber
+import org.reactivestreams.Subscription
 import retrofit2.HttpException
 import java.io.InterruptedIOException
 import java.net.ConnectException
 import java.net.UnknownHostException
 
-abstract class DefaultObserver<T> : Observer<T> {
+abstract class DefaultSubscriber<T>: Subscriber<T> {
     override fun onComplete() {
-
     }
 
-    override fun onSubscribe(d: Disposable) {
+    override fun onSubscribe(s: Subscription?) {
     }
 
     override fun onNext(t: T) {

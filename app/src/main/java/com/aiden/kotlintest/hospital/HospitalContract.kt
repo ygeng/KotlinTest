@@ -19,5 +19,4 @@ interface HospitalContract {
         fun getHospitalList(cityName: String)
     }
 
-    open class BaseLifecycleProvider(var provider: LifecycleProvider<ActivityEvent>)
 }

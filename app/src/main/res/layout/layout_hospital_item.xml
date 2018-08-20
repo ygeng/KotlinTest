@@ -22,19 +22,19 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize16" />
+            android:textSize="@dimen/textsize_normal" />
 
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize14"/>
+            android:textSize="@dimen/textsize_small"/>
 
         <TextView
             android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize12"/>
+            android:textSize="@dimen/textsize_xsmall"/>
 
     </LinearLayout>
 

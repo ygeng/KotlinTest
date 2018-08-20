@@ -2,55 +2,53 @@ package com.aiden.kotlintest.net
 
 import android.util.Log
 import com.aiden.kotlintest.CustomApplication
-import com.aiden.kotlintest.hospital.HospitalService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.io.UnsupportedEncodingException
-import java.net.URLDecoder
 import java.util.concurrent.TimeUnit
 
 class NetWork {
 
     val BASE_URL = "http://route.showapi.com/"
+    lateinit var mRetrofit: Retrofit
 
-    private fun getRetrofit(): Retrofit = Retrofit.Builder()
-            .client(getOkHttpClientBuilder().build())
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
+    init {
+        mRetrofit = Retrofit.Builder()
+                .client(getOkHttpClientBuilder().build())
+                .baseUrl(NetConfig.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+    }
 
-    fun hospitalService(): HospitalService = getRetrofit().create(HospitalService::class.java)
+    fun <T> getService(clazz: Class<T>): T = mRetrofit.create(clazz)
 
     companion object {
-        var netWork: NetWork? = null
+        var INSTANCE: NetWork? = null
 
-        fun getInstance(): NetWork {
-            if (netWork == null) {
+        init {
+            if (INSTANCE == null) {
                 synchronized(NetWork::class) {
-                    if (netWork == null) {
-                        netWork = NetWork()
+                    if (INSTANCE == null) {
+                        INSTANCE = NetWork()
                     }
                 }
             }
-            return netWork!!
         }
     }
 
-    fun getOkHttpClientBuilder(): OkHttpClient.Builder {
-        val loggingInterceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
+    private fun getOkHttpClientBuilder(): OkHttpClient.Builder {
+        val loggingInterceptor = HttpLoggingInterceptor { message ->
             try {
                 Log.e("OKHttp---", message)
             } catch (e: Exception) {
                 e.printStackTrace()
                 Log.e("OKHttp---", message)
             }
-        })
+        }
 
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 

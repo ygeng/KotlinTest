@@ -22,6 +22,7 @@ class HospitalActivity : BaseActivity(), HospitalContract.View {
     }
 
     override fun initData() {
+        setTitle(title = "医院列表", rightBtnRes = R.mipmap.ic_share)
         mPresenter = HospitalPresenter(this, this, this)
         rv_hospital.layoutManager = LinearLayoutManager(this)
         mAdapter = BaseRecyclerViewAdapter(this, mHospitalList, R.layout.layout_hospital_item) { view: View, hospitalBean: HospitalBean ->
@@ -30,6 +31,17 @@ class HospitalActivity : BaseActivity(), HospitalContract.View {
             view.tv_desc.text = hospitalBean.info
             view.iv_hospital.display(hospitalBean.img)
         }
+        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(v: View, position: Int) {
+                toast("点击了第$position 个")
+            }
+        })
+        mAdapter.setOnItemLongClickListener(object : BaseRecyclerViewAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(v: View, position: Int): Boolean {
+                toast("长按了第$position 个")
+                return true
+            }
+        })
         rv_hospital.adapter = mAdapter
         mPresenter.getHospitalList("深圳")
 

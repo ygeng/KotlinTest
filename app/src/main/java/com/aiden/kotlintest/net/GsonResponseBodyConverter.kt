@@ -5,7 +5,7 @@ import com.google.gson.TypeAdapter
 import okhttp3.ResponseBody
 import retrofit2.Converter
 /**
- * 对请求到的数据做处理，重写了 {@link GsonResponseBodyConverter}，并重写相关调用类
+ * 对请求到的数据做异常处理，重写了 {@link GsonResponseBodyConverter}，并重写相关调用类
  * @author aiden@tronsis.com
  * @date 2018/8/9 17:13
  */
@@ -19,6 +19,7 @@ class GsonResponseBodyConverter<T>(var gson: Gson, var adapter: TypeAdapter<T>):
             if (response.code == 200) {
                 return response.data
             } else {
+                // 抛出服务器异常信息
                 throw ServerResponseException(response.code, response.message)
             }
         } finally {
