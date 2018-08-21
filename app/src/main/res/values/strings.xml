@@ -2,4 +2,10 @@
     <string name="app_name">KotlinTest</string>
 
     <string name="empty"></string>
+    <string name="common_error">似乎出了点问题…</string>
+    <string name="reload">重新加载</string>
+    <string name="permission_notice">当前应用缺少必要权限。\n请点击"设置"-"权限"-打开所需权限。</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="setting">设置</string>
 </resources>

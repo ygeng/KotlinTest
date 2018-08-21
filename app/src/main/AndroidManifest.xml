@@ -3,6 +3,11 @@
     package="com.aiden.kotlintest">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:name=".CustomApplication"
@@ -13,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".hospital.HospitalActivity" >
+
+        </activity>
+        <activity android:name=".base.PermissionTestActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

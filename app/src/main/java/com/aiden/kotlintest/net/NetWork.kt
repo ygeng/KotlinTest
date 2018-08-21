@@ -10,10 +10,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-class NetWork {
+class NetWork private constructor() {
 
     val BASE_URL = "http://route.showapi.com/"
-    lateinit var mRetrofit: Retrofit
+    var mRetrofit: Retrofit
 
     init {
         mRetrofit = Retrofit.Builder()

@@ -1,5 +1,6 @@
 package com.aiden.kotlintest.hospital
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.aiden.kotlintest.R
@@ -17,8 +18,10 @@ class HospitalActivity : BaseActivity(), HospitalContract.View {
     private lateinit var mAdapter: BaseRecyclerViewAdapter<HospitalBean>
     private var mHospitalList: ArrayList<HospitalBean> = ArrayList<HospitalBean>()
 
-    override fun getLayout(): Int {
-        return R.layout.activity_hospital
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_hospital)
     }
 
     override fun initData() {

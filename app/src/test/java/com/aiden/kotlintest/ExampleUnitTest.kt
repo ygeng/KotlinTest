@@ -41,4 +41,20 @@ class ExampleUnitTest {
         println(result2)
 
     }
+
+    @Test
+    fun test2() {
+        varargTest("111", "222", "333")
+        varargTest("555", "666")
+    }
+
+    lateinit var stringArray: Array<String>
+
+    fun varargTest(vararg stringParams: String) {
+        stringArray = stringParams as Array<String>
+        for (s in stringArray) {
+            print(s)
+        }
+        println()
+    }
 }
