@@ -12,6 +12,8 @@ import com.trello.rxlifecycle2.android.ActivityEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
+
 
 class HospitalPresenter(var activity: Activity, view: HospitalContract.View, var provider: LifecycleProvider<ActivityEvent>) : HospitalContract.Presenter {
     var hospitalView: HospitalContract.View = view
